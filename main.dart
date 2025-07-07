@@ -27,7 +27,7 @@ class _CalculatorState extends State<Calculator> {
   // Controllers for text fields
   final TextEditingController _firstNumberController = TextEditingController();
   final TextEditingController _secondNumberController = TextEditingController();
-
+  
   // Variables to store state
   String _selectedOperation = '+';
   String _result = '';
@@ -52,7 +52,7 @@ class _CalculatorState extends State<Calculator> {
 
       // Perform calculation
       double calculationResult;
-
+      
       switch (_selectedOperation) {
         case '+':
           calculationResult = firstNumber + secondNumber;
@@ -83,7 +83,7 @@ class _CalculatorState extends State<Calculator> {
       } else {
         _result = calculationResult.toStringAsFixed(2);
       }
-
+      
       _hasError = false;
     });
   }
@@ -125,16 +125,17 @@ class _CalculatorState extends State<Calculator> {
           ),
         ),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
                 // Calculator Icon
                 Center(
                   child: Container(
-                    width: 80,
-                    height: 80,
+                    width: 60,
+                    height: 60,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
@@ -148,79 +149,77 @@ class _CalculatorState extends State<Calculator> {
                     ),
                     child: Icon(
                       Icons.calculate,
-                      size: 40,
+                      size: 30,
                       color: Colors.blue.shade700,
                     ),
                   ),
                 ),
-
-                SizedBox(height: 32),
-
+                
+                SizedBox(height: 20),
+                
                 // First Number Input
                 Card(
-                  elevation: 8,
+                  elevation: 6,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(16),
+                    padding: EdgeInsets.all(12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'First Number',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Colors.blue.shade700,
                           ),
                         ),
-                        SizedBox(height: 8),
+                        SizedBox(height: 6),
                         TextField(
                           controller: _firstNumberController,
-                          keyboardType:
-                              TextInputType.numberWithOptions(decimal: true),
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           decoration: InputDecoration(
                             hintText: 'Enter first number',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(8),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                  color: Colors.blue.shade700, width: 2),
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: BorderSide(color: Colors.blue.shade700, width: 2),
                             ),
-                            prefixIcon: Icon(Icons.looks_one,
-                                color: Colors.blue.shade700),
+                            prefixIcon: Icon(Icons.looks_one, color: Colors.blue.shade700),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-
-                SizedBox(height: 20),
-
+                
+                SizedBox(height: 16),
+                
                 // Operation Selection
                 Card(
-                  elevation: 8,
+                  elevation: 6,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(16),
+                    padding: EdgeInsets.all(12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Operation',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Colors.blue.shade700,
                           ),
                         ),
-                        SizedBox(height: 12),
+                        SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: _operations.map((operation) {
@@ -231,13 +230,13 @@ class _CalculatorState extends State<Calculator> {
                                 });
                               },
                               child: Container(
-                                width: 60,
-                                height: 60,
+                                width: 50,
+                                height: 50,
                                 decoration: BoxDecoration(
                                   color: _selectedOperation == operation
                                       ? Colors.blue.shade700
                                       : Colors.grey.shade200,
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(12),
                                   border: Border.all(
                                     color: Colors.blue.shade700,
                                     width: 2,
@@ -247,7 +246,7 @@ class _CalculatorState extends State<Calculator> {
                                   child: Text(
                                     operation,
                                     style: TextStyle(
-                                      fontSize: 24,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       color: _selectedOperation == operation
                                           ? Colors.white
@@ -263,54 +262,52 @@ class _CalculatorState extends State<Calculator> {
                     ),
                   ),
                 ),
-
-                SizedBox(height: 20),
-
+                
+                SizedBox(height: 16),
+                
                 // Second Number Input
                 Card(
-                  elevation: 8,
+                  elevation: 6,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(16),
+                    padding: EdgeInsets.all(12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Second Number',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Colors.blue.shade700,
                           ),
                         ),
-                        SizedBox(height: 8),
+                        SizedBox(height: 6),
                         TextField(
                           controller: _secondNumberController,
-                          keyboardType:
-                              TextInputType.numberWithOptions(decimal: true),
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           decoration: InputDecoration(
                             hintText: 'Enter second number',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(8),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                  color: Colors.blue.shade700, width: 2),
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: BorderSide(color: Colors.blue.shade700, width: 2),
                             ),
-                            prefixIcon: Icon(Icons.looks_two,
-                                color: Colors.blue.shade700),
+                            prefixIcon: Icon(Icons.looks_two, color: Colors.blue.shade700),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-
-                SizedBox(height: 30),
-
+                
+                SizedBox(height: 20),
+                
                 // Calculate and Clear Buttons
                 Row(
                   children: [
@@ -320,21 +317,21 @@ class _CalculatorState extends State<Calculator> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green.shade600,
                           foregroundColor: Colors.white,
-                          padding: EdgeInsets.symmetric(vertical: 16),
+                          padding: EdgeInsets.symmetric(vertical: 12),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          elevation: 8,
+                          elevation: 6,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.calculate, size: 24),
-                            SizedBox(width: 8),
+                            Icon(Icons.calculate, size: 20),
+                            SizedBox(width: 6),
                             Text(
                               'Calculate',
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -342,28 +339,28 @@ class _CalculatorState extends State<Calculator> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 16),
+                    SizedBox(width: 12),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: _clear,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red.shade600,
                           foregroundColor: Colors.white,
-                          padding: EdgeInsets.symmetric(vertical: 16),
+                          padding: EdgeInsets.symmetric(vertical: 12),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          elevation: 8,
+                          elevation: 6,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.clear, size: 24),
-                            SizedBox(width: 8),
+                            Icon(Icons.clear, size: 20),
+                            SizedBox(width: 6),
                             Text(
                               'Clear',
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -373,28 +370,24 @@ class _CalculatorState extends State<Calculator> {
                     ),
                   ],
                 ),
-
-                SizedBox(height: 30),
-
+                
+                SizedBox(height: 20),
+                
                 // Result Display
                 if (_result.isNotEmpty)
                   Card(
-                    elevation: 8,
+                    elevation: 6,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Container(
                       width: double.infinity,
-                      padding: EdgeInsets.all(24),
+                      padding: EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: _hasError
-                            ? Colors.red.shade50
-                            : Colors.green.shade50,
-                        borderRadius: BorderRadius.circular(15),
+                        color: _hasError ? Colors.red.shade50 : Colors.green.shade50,
+                        borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: _hasError
-                              ? Colors.red.shade300
-                              : Colors.green.shade300,
+                          color: _hasError ? Colors.red.shade300 : Colors.green.shade300,
                           width: 2,
                         ),
                       ),
@@ -402,37 +395,34 @@ class _CalculatorState extends State<Calculator> {
                         children: [
                           Icon(
                             _hasError ? Icons.error : Icons.check_circle,
-                            size: 32,
-                            color: _hasError
-                                ? Colors.red.shade700
-                                : Colors.green.shade700,
-                          ),
-                          SizedBox(height: 12),
-                          Text(
-                            'Result',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: _hasError
-                                  ? Colors.red.shade700
-                                  : Colors.green.shade700,
-                            ),
+                            size: 28,
+                            color: _hasError ? Colors.red.shade700 : Colors.green.shade700,
                           ),
                           SizedBox(height: 8),
                           Text(
+                            'Result',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: _hasError ? Colors.red.shade700 : Colors.green.shade700,
+                            ),
+                          ),
+                          SizedBox(height: 6),
+                          Text(
                             _result,
                             style: TextStyle(
-                              fontSize: 32,
+                              fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              color: _hasError
-                                  ? Colors.red.shade700
-                                  : Colors.green.shade700,
+                              color: _hasError ? Colors.red.shade700 : Colors.green.shade700,
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
+                
+                // Add some bottom padding for better scrolling
+                SizedBox(height: 20),
               ],
             ),
           ),
